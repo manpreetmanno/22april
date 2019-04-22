@@ -1,0 +1,80 @@
+Skip to content
+ 
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@manpreetmanno 
+1
+0 1 PeterSigurdson/WebServiceMashupsProject
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights
+WebServiceMashupsProject/GoogleMapsMashupStarterCode
+@PeterSigurdson PeterSigurdson Create GoogleMapsMashupStarterCode
+9f60c4f 4 days ago
+59 lines (51 sloc)  1.09 KB
+    
+Google Maps Mashup Starter Code:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		#map {
+			height: 100%;
+		}
+		/* Optional: Makes the sample page fill the window. */
+		html, body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+	var map;
+	var parks = [
+		{"park":"Yellowstone","coords":[44.4280,-110.5885]},
+		{"park":"Glacier","coords":[43.6529, -79.3849]},
+        {"park":"Yellowstone","coords":[43.658753,-79.751991]},
+		{"park":"Glacier","coords":[43.748123, -79.763086]},
+        {"park":"Yellowstone","coords":[43.651822,-79.734638]},  
+		{"park":"Glacier","coords":[43.679514, -79.807467]}
+		];
+
+	function initMap() {
+		map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 4,
+			center: new google.maps.LatLng(44, -110),
+			mapTypeId: 'terrain'
+		});
+
+		mashParks(parks);
+	}
+
+	function mashParks(results) {
+	for (var i = 0; i < results.length; i++) {
+		var coords = results[i].coords;
+		var latLng = new google.maps.LatLng(coords[0], coords[1]);
+		var marker = new google.maps.Marker({
+			position: latLng,
+			map: map,
+			label:results[i].park
+			});
+		}
+	}
+
+
+
+</script>
+<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTM5RKrtCLpZAj5HU3K3cTvFNB240NsBg&callback=initMap">
+</script>
+</body>
+</html>
